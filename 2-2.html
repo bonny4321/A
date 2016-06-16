@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2-2</title>
+</head>
+<body>
+	<!--使用ajax從後台抓出資料-->
+	<form>
+	<!--此為範例 請自行修改-->
+		<select name="YourLocation">
+　			<option value="Taipei">台北市</option>
+			<option value="Tainan">台南市</option>
+　			<option value="Kaohsiung">高雄市</option>
+		</select>
+		<select name="area">
+			
+		</select>
+	</form>
+	<!--3-3題-->縣市+區域<input type="text" id="address"></br>
+	<!--加分題(需chrome可用)--><input type="button" value="下載">
+</body>
+</body>
+</html>
+
+<?php
+    // 資料庫設定
+    $host_sql = 'localhost';
+    $username_sql = 'rootphp';
+    $password_sql = 'classforphp';
+    
+    // 聯結資料庫
+     $conni=mysqli_connect('localhost','rootphp','classforphp','2');	    
+    mysql_select_db('selectboxes', $link);
+    mysqli_query($conni,"SET CHARACTER SET UTF8");
+    mysqli_query($conni,"SET CHARACTER_SET_RESULTS=UTF8'");
+    mysqli_query($conni,"SET character_set_connection=utf8, character_set_results=utf8, character_set_client=binary");
+
+    // 動態取得第一階層下拉式選單
+    $query = 'SELECT id, name FROM games WHERE levelNum = 1';
+    $result = mysql_query($query, $link);
+    while ($row = mysql_fetch_assoc($result)) {
+        echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>' . "\n";
+    }
+
+?>
+
+
