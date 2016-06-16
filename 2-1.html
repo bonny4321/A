@@ -1,0 +1,44 @@
+<script>
+function checkall(num,maj)
+{
+var tag = 'dep[' + num +'][]';
+var switch_checked = maj.checked;
+var len = document.exp_form.elements.length;
+for (var i = 0; i < len; i++)
+{
+if (document.exp_form.elements[i].name == tag)
+document.exp_form.elements[i].checked = switch_checked;
+}
+}
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2-1</title>
+</head>
+<body></body>
+<form>
+	<!--點一下全選後所有checkbox 會全勾，再點一下會全部取消，禁止使用jquery-->
+	<form action="#" name="exp_form" method="post">
+	<input type="checkbox" name="depall0" onclick="checkall(0,this);">全選</form></br>
+	1.桌子<input name="dep[0][]" type="checkbox" value="a1"></br>
+	2.椅子<input name="dep[0][]" type="checkbox" value="a2"></br>
+	3.電視<input name="dep[0][]" type="checkbox" value="a3"></br>
+	4.洗衣機<input name="dep[0][]" type="checkbox" value="a4"></br>
+	5.廚房<input name="dep[0][]" type="checkbox" value="a5"></br>
+	6.浴室<input name="dep[0][]" type="checkbox" value="a6"></br>
+</form>
+
+</html>
+
+<?php
+for($_i=0;$_i<3;$_i++)
+{
+for($_j=0;$_j<count($_POST['dep'][$_i]);$_j++ )
+{
+echo $_POST['dep'][$_i][$_j];
+}
+}
+?>
